@@ -1,0 +1,45 @@
+{
+	"controllerUrl": "${controllerUrl}",
+	"accountId": "${account.id}",
+	"accountName": "${account.name}",
+	"policy": "${policy.name}",
+	"action": "${action.name}",
+	#if(${notes})
+		"notes": "${notes}",
+	#end
+	"topSeverity": "${topSeverity}",
+	"eventType": "${latestEvent.eventType}",
+	"eventId": "${latestEvent.id}",
+	"eventGuid": "${latestEvent.guid}",
+	"displayName": "${latestEvent.displayName}",
+	"eventTime": "${latestEvent.eventTime}",
+	"severity": "${latestEvent.severity}",
+	"applicationName": "${latestEvent.application.name}",
+	"applicationId": "${latestEvent.application.id}",
+	"tier": "${latestEvent.tier.name}",
+	"node": "${latestEvent.node.name}",
+	#if(${latestEvent.db.name})
+		"db": "${latestEvent.db.name}",
+	#end
+	#if(${latestEvent.healthRule.name})
+		"healthRule": "${latestEvent.healthRule.name}",
+	#end
+	#if(${latestEvent.incident.name})
+		"incident": "${latestEvent.incident.name}",
+	#end
+	"affectedEntities": [
+	#foreach($entity in ${latestEvent.affectedEntities})
+		{
+		  "entityType": "${entity.entityType}",
+		  "name": "${entity.name}"
+		} #if($foreach.hasNext), #end
+	#end
+	],
+	"deepLink": "${latestEvent.deepLink}",
+        "summaryMessage": "$!{latestEvent.summaryMessage.replace('"','')}",
+        "eventMessage": "$!{latestEvent.eventMessage.replace('"','')}",
+	"healthRuleEvent": ${latestEvent.healthRuleEvent},
+	"healthRuleViolationEvent": ${latestEvent.healthRuleViolationEvent},
+	"btPerformanceEvent": ${latestEvent.btPerformanceEvent},
+	"eventTypeKey": "${latestEvent.eventTypeKey}"
+ }
